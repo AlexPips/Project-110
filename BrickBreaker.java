@@ -6,7 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-  
+
 public class BrickBreaker{  
 	private final static int FrameX = 700;
 	private final static int FrameY = 1000;
@@ -18,6 +18,7 @@ public class BrickBreaker{
 	private static double ySpeed;
 	private static Ball[] Balls;
 	private static Rectangle[] Rectangles;
+	private static Text[] rectanglesScore;
 	private static Rectangle ScoreBoard;
 	private static int[] XRectangles= new int[]{0,100,200,300,400,500,600,0,200,300,400,600,0,600,0,100,500,600};
 	private static int[] YRectangles= new int[]{0,0,0,0,0,0,0,100,100,100,100,100,200,200,300,300,300,300};
@@ -27,13 +28,17 @@ public class BrickBreaker{
 	private static double[] yRec= new double[18];
 	private static int notEnd=0;
 
+
 	
 	public BrickBreaker(){
 		GameArena stadium = new GameArena(FrameY,FrameX);
 		Rectangle Rectangles[] = new Rectangle[18];
+		Text rectanglesScore[] = new Text[18];
 		for(int i=0; i<Rectangles.length; i++){		
 			Rectangles[i] = new Rectangle(XRectangles[i]+50, YRectangles[i]+50, 100, 100, "YELLOW");
 			stadium.addRectangle(Rectangles[i]);
+			rectanglesScore[i] = new Text("5", XRectangles[i]+50, YRectangles[i]+50, 20, "RED" );
+			stadium.addText(rectanglesScore[i]);
 		}
 		ScoreBoard = new Rectangle(850, 350, 300, 700, "BLUE");
 		stadium.addRectangle(ScoreBoard);
@@ -43,7 +48,11 @@ public class BrickBreaker{
 		stadium.addText(textScore);
 		Text textScoreNum= new Text(" 0", 745, 70, 20, "RED");
 		stadium.addText(textScoreNum);
+		int ballText =ballsNum;
+		String numberOfBallText = Integer.toString(ballText);
+		Text ballNum= new Text(numberOfBallText, FrameX/2-5, FrameX, 15, "RED");
 		
+
 				
 		while(true){
 			mouseX=MouseInfo.getPointerInfo().getLocation().x-60;
@@ -73,13 +82,16 @@ public class BrickBreaker{
 						ySpeed=ySpeed/2;	
 					}
 				}
+				xSpeed=xSpeed+xSpeed/20;
+				int intxSpeed=(int) xSpeed;
+				int intySpeed=(int) ySpeed;
 				for(int i=0; i<balls.length; i++){		
 					balls[i] = new Ball(FrameX/2,FrameX-BallSize, BallSize, "GREEN");
 					stadium.addBall(balls[i]);
-					balls[i].setXSpeed(xSpeed);
-					balls[i].setYSpeed(ySpeed);
+					balls[i].setXSpeed(intxSpeed);
+					balls[i].setYSpeed(intySpeed);
+
 				}
-				Text ballNum= new Text("0", FrameX/2-5, FrameX, 15, "RED");
 				stadium.addText(ballNum);
 				
 				
@@ -88,21 +100,24 @@ public class BrickBreaker{
 			if(notEnd==1){
 				for(int z=0; z<balls.length; z++){
 					for(int i=0; i<=z; i++){
+						
 						balls[i].moveball();
 						balls[i].bounceball(FrameX,FrameX);
 						for(int a=0; a<Rectangles.length; a++){
-							double x = Rectangles[i].getXPosition();
-							double y = Rectangles[i].getYPosition();
-							double w = Rectangles[i].getWidth();
-							double h = Rectangles[i].getHeight();
-							balls[i].bounceOnRectangle( x, y, w, h);
-							
+							double x = Rectangles[a].getXPosition();
+							double y = Rectangles[a].getYPosition();
+							balls[i].bounceOnRectangle( x, y, 50);
 						}
 						
-						
 					}
+				if(ballText>0){
+					ballText--;
+					
+					numberOfBallText = Integer.toString(ballText);
+					ballNum.setText(numberOfBallText);
+					stadium.addText(ballNum);
+				}	
 				}
-			
 			}
 			if(notEnd==2){
 				for(int i=0; i<Rectangles.length; i++){

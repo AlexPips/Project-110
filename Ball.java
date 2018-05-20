@@ -180,30 +180,30 @@ public class Ball
 			setYPosition(maxY-10);
         	}
 	}
-	public void bounceOnRectangle(double x,double y,double w,double h){
-		double x1=x+w/2;
-		double x2=x-w/2;
-		double y1=y+h/2;
-		double y2=y-h/2;
+	public void bounceOnRectangle(double x,double y,double w){
+		double x1=x+w;
+		double x2=x-w;
+		double y1=y+w;
+		double y2=y-w;
 		double ballX=getXPosition();
 		double ballY=getYPosition();
-		
-		if(/*ballX<=x1 && ballX>=x2 &&*/ ballY==y1){
+		if(ballX<=x1 && ballX>=x2 && ballY<=y1 && ballY>=y1-5){
 			ySpeed = -ySpeed;
-			System.out.println("Down");
+			//System.out.println("Down");
+
 		}
-		/*if(ballX<=x1 && ballX>=x2 && ballY==y2){
+		if(ballX<=x1 && ballX>=x2 && ballY<=y2 && ballY>=y2-5){
 			ySpeed = -ySpeed;
-			System.out.println("Up");
+			//System.out.println("Up");
 		}
-		if(ballY<=y1 && ballY>=y2 && ballX==x1){
+		if(ballY<=y1 && ballY>=y2 && ballX<=x1 && ballX>=x1-5){
 			xSpeed = -xSpeed;
-			System.out.println("Right");
+			//System.out.println("Right");
 		}	
-		if(ballY<=y1 && ballY>=y2 && ballX==x2){
+		if(ballY<=y1 && ballY>=y2 && ballX<=x2 && ballX>=x2-5){
 			xSpeed = -xSpeed;
-			System.out.println("Left");
-		}	*/
+			//System.out.println("Left");
+		}
 	}
 
 }
