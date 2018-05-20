@@ -124,6 +124,8 @@ public class Ball
         yPosition = y;
         size = diameter;
         colour = col;
+	moveball();
+	
     }    
     public void setXSpeed(double speed)
     {
@@ -140,7 +142,11 @@ public class Ball
 		xPosition += xSpeed;
 		yPosition += ySpeed;
     }
-
+	public void moveball()
+	{
+		xPosition = xSpeed+xPosition;
+		yPosition = ySpeed+yPosition;
+	}
 	public void bounce(double maxX, double maxY)
 	{
         move();
@@ -156,5 +162,49 @@ public class Ball
 		    yPosition += ySpeed;
         }
 	}
+	public void bounceball(double maxX, double maxY){
+		if (xPosition > maxX || xPosition < 0)
+        	{
+			xSpeed = -xSpeed;
+       		 }
+
+		if (yPosition < 0)
+        	{
+			ySpeed = -ySpeed;
+        	}
+		if (yPosition > maxX)
+        	{
+			setXSpeed(0);
+			setYSpeed(0);
+			setXPosition(maxX/2);
+			setYPosition(maxY-10);
+        	}
+	}
+	public void bounceOnRectangle(double x,double y,double w,double h){
+		double x1=x+w/2;
+		double x2=x-w/2;
+		double y1=y+h/2;
+		double y2=y-h/2;
+		double ballX=getXPosition();
+		double ballY=getYPosition();
+		
+		if(/*ballX<=x1 && ballX>=x2 &&*/ ballY==y1){
+			ySpeed = -ySpeed;
+			System.out.println("Down");
+		}
+		/*if(ballX<=x1 && ballX>=x2 && ballY==y2){
+			ySpeed = -ySpeed;
+			System.out.println("Up");
+		}
+		if(ballY<=y1 && ballY>=y2 && ballX==x1){
+			xSpeed = -xSpeed;
+			System.out.println("Right");
+		}	
+		if(ballY<=y1 && ballY>=y2 && ballX==x2){
+			xSpeed = -xSpeed;
+			System.out.println("Left");
+		}	*/
+	}
+
 }
 

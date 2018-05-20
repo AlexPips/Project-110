@@ -141,5 +141,6 @@ public class Rectangle
         width = w;
         height = h;
         colour = col;
-    }    
+    }
+
 }
