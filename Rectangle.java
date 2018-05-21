@@ -13,7 +13,7 @@ public class Rectangle
     private double width;                // The width of this Rectangle
     private double height;               // The height of this Rectangle
     private String colour;               // The colour of this Rectangle
-
+    private int value;
     /**
      * Obtains the current position of this Rectangle.
      * @return the X coordinate of this Rectangle within the GameArena.
@@ -94,7 +94,10 @@ public class Rectangle
     {
         return colour;
     }
-
+    public void setValue(int v){
+	value=v;
+    }
+    
     /**
      * Changes the colour of this Rectangle to the given value.
      * 
@@ -142,4 +145,29 @@ public class Rectangle
         height = h;
         colour = col;
     }
+	public void bounceOnRectangle(double ballX,double ballY){
+		double x1=xPosition+width/2;
+		double x2=xPosition-width/2;
+		double y1=yPosition+height/2;
+		double y2=yPosition-height/2;
+		
+		if(ballX<=x1 && ballX>=x2 && ballY<=y1 && ballY>=y1-5){
+			value--;
+			//System.out.println("Down");
+		}
+		if(ballX<=x1 && ballX>=x2 && ballY<=y2 && ballY>=y2-5){
+			value--;
+			//System.out.println("Up");
+		}
+		if(ballY<=y1 && ballY>=y2 && ballX<=x1 && ballX>=x1-5){
+			value--;
+			//System.out.println("Right");
+		}	
+		if(ballY<=y1 && ballY>=y2 && ballX<=x2 && ballX>=x2-5){
+			value--;
+			//System.out.println("Left");
+		}
+	}
+
+	
 }

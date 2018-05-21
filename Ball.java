@@ -190,7 +190,6 @@ public class Ball
 		if(ballX<=x1 && ballX>=x2 && ballY<=y1 && ballY>=y1-5){
 			ySpeed = -ySpeed;
 			//System.out.println("Down");
-
 		}
 		if(ballX<=x1 && ballX>=x2 && ballY<=y2 && ballY>=y2-5){
 			ySpeed = -ySpeed;
