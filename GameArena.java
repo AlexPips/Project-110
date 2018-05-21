@@ -299,6 +299,7 @@ public class GameArena
             c.setTranslateX(b.getXPosition());
             c.setTranslateY(b.getYPosition());
             c.setFill(getColourFromString(b.getColour()));
+	    b.setballValue(b.getballValue());
         }
 
         for(Map.Entry<Rectangle, javafx.scene.shape.Rectangle> entry : rectangles.entrySet())
@@ -310,6 +311,7 @@ public class GameArena
             rectangle.setTranslateX(r.getXPosition() - r.getWidth()/2);
             rectangle.setTranslateY(r.getYPosition() - r.getHeight()/2);
             rectangle.setFill(getColourFromString(r.getColour()));
+	    r.setRectValue(r.getRectValue());
         }
 
         for(Map.Entry<Line, javafx.scene.shape.Line> entry : lines.entrySet())

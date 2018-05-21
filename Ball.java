@@ -13,7 +13,8 @@ public class Ball
     private double size;                // The diameter of this Ball
     private String colour;              // The colour of this Ball
     private double xSpeed;
-    private double ySpeed;                                   
+    private double ySpeed;
+    private int value;                                   
 
     /**
      * Obtains the current position of this Ball.
@@ -77,7 +78,13 @@ public class Ball
     {
         return colour;
     }
-
+     public void setballValue(int v){
+	value=v;
+    }
+     public int getballValue(){
+	return value;
+    }
+    /**
     /**
      * Changes the colour of this Ball to the given value.
      * 
@@ -178,6 +185,8 @@ public class Ball
 			setYSpeed(0);
 			setXPosition(maxX/2);
 			setYPosition(maxY-10);
+			value=1;
+			
         	}
 	}
 	public void bounceOnRectangle(double x,double y,double w){

@@ -94,10 +94,12 @@ public class Rectangle
     {
         return colour;
     }
-    public void setValue(int v){
+    public void setRectValue(int v){
 	value=v;
     }
-    
+     public int getRectValue(){
+	return value;
+    }
     /**
      * Changes the colour of this Rectangle to the given value.
      * 

@@ -37,9 +37,9 @@ public class BrickBreaker{
 		for(int i=0; i<Rectangles.length; i++){		
 			Rectangles[i] = new Rectangle(XRectangles[i]+50, YRectangles[i]+50, 100, 100, "YELLOW");
 			stadium.addRectangle(Rectangles[i]);
-			Rectangles[i].setValue(5);
+			Rectangles[i].setRectValue(5);
 			rectanglesScore[i] = new Text("5", XRectangles[i]+50, YRectangles[i]+50, 20, "RED" );
-			stadium.addText(setValue[i]);
+			stadium.addText(rectanglesScore[i]);
 		}
 		ScoreBoard = new Rectangle(850, 350, 300, 700, "BLUE");
 		stadium.addRectangle(ScoreBoard);
@@ -93,6 +93,7 @@ public class BrickBreaker{
 					balls[i].setYSpeed(intySpeed);
 
 				}
+				
 				stadium.addText(ballNum);
 				
 				
@@ -104,37 +105,50 @@ public class BrickBreaker{
 						balls[i].moveball();
 						balls[i].bounceball(FrameX,FrameX);
 						for(int a=0; a<Rectangles.length; a++){
-							double x = Rectangles[a].getXPosition();
-							double y = Rectangles[a].getYPosition();
-							balls[i].bounceOnRectangle( x, y, 50);
-							double ballX=balls[i].getXPosition();
-							double ballY=balls[i].getYPosition();
-							Rectangles[a].bounceOnRectangle(ballX,ballY);
-							//int newnum=Rectangles[a].getRectangleValue();
-							//numberOfBallText = Integer.toString(newnum);
-							//rectanglesScore[i].setText(numberOfBallText);
+							int newnum=Rectangles[a].getRectValue();
+							if (newnum==0){
+								stadium.removeRectangle(Rectangles[a]);
+								stadium.removeText(rectanglesScore[a]);
+							}else{
+								double x = Rectangles[a].getXPosition();
+								double y = Rectangles[a].getYPosition();
+								balls[i].bounceOnRectangle( x, y, 50);
+								double ballX=balls[i].getXPosition();
+								double ballY=balls[i].getYPosition();
+								Rectangles[a].bounceOnRectangle(ballX,ballY);
+								String numberOfRecText = Integer.toString(newnum);
+								rectanglesScore[a].setText(numberOfRecText);
+							}
+							int newballnum=0;
+							
+							newballnum= balls[0].getballValue()+balls[1].getballValue()+balls[2].getballValue()+balls[3].getballValue()+balls[4].getballValue();
+							if(newballnum==ballsNum){
+							notEnd=2;
+							}
 						}
 						
 					}
-				if(ballText>0){
-					ballText--;
 					
-					numberOfBallText = Integer.toString(ballText);
-					ballNum.setText(numberOfBallText);
-					stadium.addText(ballNum);
-				}	
 				}
 			}
 			if(notEnd==2){
+				notEnd=0;
 				for(int i=0; i<Rectangles.length; i++){
 					double y;
 					y=Rectangles[i].getYPosition();
 					Rectangles[i].setYPosition(y+100);
-					
+					rectanglesScore[i].setYPosition(y+100);
+					if(y+100>FrameX){
+						notEnd=3;
+						
+					}
 				}
-				notEnd=0;
+				notEnd=notEnd;
 			}
-			
+			if(notEnd==3){
+				Text GAMEOVER= new Text("GAME OVER", 200, 500, 40, "RED");
+				stadium.addText(GAMEOVER);
+			}
 		stadium.update();
 		}
 
