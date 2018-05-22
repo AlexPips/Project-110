@@ -1,8 +1,0 @@
-/*
-size
-color
-score
-
-
-
-*/

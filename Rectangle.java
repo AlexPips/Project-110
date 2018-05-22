@@ -153,21 +153,21 @@ public class Rectangle
 		double y1=yPosition+height/2;
 		double y2=yPosition-height/2;
 		
-		if(ballX<=x1 && ballX>=x2 && ballY<=y1 && ballY>=y1-5){
+		if(ballX<=x1 && ballX>=x2 && ballY<=y1 && ballY>=y1-7){		//Down
 			value--;
-			//System.out.println("Down");
+			
 		}
-		if(ballX<=x1 && ballX>=x2 && ballY<=y2 && ballY>=y2-5){
+		if(ballX<=x1 && ballX>=x2 && ballY<=y2 && ballY>=y2-7){		//Up
 			value--;
-			//System.out.println("Up");
+			
 		}
-		if(ballY<=y1 && ballY>=y2 && ballX<=x1 && ballX>=x1-5){
+		if(ballY<=y1 && ballY>=y2 && ballX<=x1 && ballX>=x1-7){		//Right
 			value--;
-			//System.out.println("Right");
+			
 		}	
-		if(ballY<=y1 && ballY>=y2 && ballX<=x2 && ballX>=x2-5){
+		if(ballY<=y1 && ballY>=y2 && ballX<=x2 && ballX>=x2-7){		//Left
 			value--;
-			//System.out.println("Left");
+			
 		}
 	}
 
