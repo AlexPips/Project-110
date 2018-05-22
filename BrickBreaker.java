@@ -32,12 +32,12 @@ public class BrickBreaker{
 
 
 	
-	public BrickBreaker(){
+	public BrickBreaker(){																			//Main Game
 		GameArena stadium = new GameArena(FrameX,FrameX);
 		Rectangle Rectangles[] = new Rectangle[33];
 		Text rectanglesScore[] = new Text[33];
 		int RectanglesInOut[]= new int[33];
-		for(int i=0; i<Rectangles.length; i++){		
+		for(int i=0; i<Rectangles.length; i++){														//Adding Rectangle
 			Rectangles[i] = new Rectangle(XRectangles[i]+50, YRectangles[i]+50, 100, 100, "YELLOW");
 			stadium.addRectangle(Rectangles[i]);
 			Rectangles[i].setRectValue(5);
@@ -48,7 +48,7 @@ public class BrickBreaker{
 		ScoreBoard = new Rectangle(850, 350, 300, 700, "BLUE");
 		stadium.addRectangle(ScoreBoard);
 		Arrow arrow = new Arrow(FrameX/2,FrameX,mouseX,mouseY,5,"GREEN",stadium);					//Add Arrow
-		Ball balls[] = new Ball[ballsNum];															//Add Balls
+		Ball balls[] = new Ball[ballsNum];				
 		Text textScore= new Text(" Score", 700, 50, 20, "RED");
 		stadium.addText(textScore);
 		Text textScoreNum= new Text(" 0", 745, 70, 20, "RED");
@@ -65,13 +65,13 @@ public class BrickBreaker{
 			mouseX=MouseInfo.getPointerInfo().getLocation().x-60;
 			mouseY=MouseInfo.getPointerInfo().getLocation().y-60;
 			arrow.setEnd(mouseX,mouseY);
-			if(notEnd==0){
+			if(notEnd==0){																			//Waiting for the user to decide the direction
 				if (stadium.spacePressed()){	
 					xSpeed=mouseX-FrameX/2;
 					ySpeed=mouseY-FrameX;
 					notEnd=1;
 				}
-				if(xSpeed>0){
+				if(xSpeed>0){																		//Finding the Speed of the Balls throw the Arrow
 					while(xSpeed>10){
 						xSpeed=xSpeed/2;
 						ySpeed=ySpeed/2;
@@ -92,7 +92,7 @@ public class BrickBreaker{
 				xSpeed=xSpeed+xSpeed/20;
 				int intxSpeed=(int) xSpeed;
 				int intySpeed=(int) ySpeed;
-				for(int i=0; i<balls.length; i++){		
+				for(int i=0; i<balls.length; i++){													//Adding the balls
 					balls[i] = new Ball(FrameX/2,FrameX-BallSize, BallSize, "GREEN");
 					stadium.addBall(balls[i]);
 					balls[i].setXSpeed(intxSpeed+intxSpeed/10);
@@ -105,7 +105,7 @@ public class BrickBreaker{
 				
 			}
 			
-			if(notEnd==1){
+			if(notEnd==1){																			//The balls are moving and hitting the rectangles
 				for(int z=0; z<balls.length; z++){
 					for(int i=0; i<=z; i++){
 						balls[i].moveball();
@@ -140,7 +140,7 @@ public class BrickBreaker{
 					
 				}
 			}
-			if(notEnd==2){
+			if(notEnd==2){																				//Next Round
 				notEnd=0;
 				round++;
 				for(int i=0; i<Rectangles.length; i++){
@@ -164,12 +164,12 @@ public class BrickBreaker{
 				}
 				notEnd=notEnd;
 			}
-			if(notEnd==3){
+			if(notEnd==3){																					//Game Over
 				Text GAMEOVER= new Text("GAME OVER", 200, 500, 40, "RED");
 				stadium.addText(GAMEOVER);
 				
 			}
-			if(notEnd==4){
+			if(notEnd==4){																					//Winner
 				Text GAMEOVER= new Text("YOU ARE THE WINNER", 200, 500, 40, "RED");
 				stadium.addText(GAMEOVER);
 				
