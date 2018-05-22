@@ -7,6 +7,18 @@ import java.awt.event.MouseMotionListener;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/** 
+  * @author  Alexis Piperide
+  * 
+  * BrickBraker Project
+  *The aim of the player in the game is to break as many bricks as possible by firing a number of bouncing balls.
+  * The direction and the speed of the balls can be controlled by the mouse. Each time the player fires the balls 
+  * the bricks move one position downwards towards the floor. The bricks must be smashed before touching the floor 
+  * otherwise the game is over. The score of the game is 1 point for every smashed brick.
+  *
+ **/
+
+
 public class BrickBreaker{  
 	private final static int FrameX = 700;
 	private final static int FrameY = 1000;
